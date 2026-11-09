@@ -128,7 +128,7 @@
   font-size: var(--bv-text-xs);
 }
 .bv-theme-picker select {
-  min-height: 36px;
+  min-height: var(--bv-target);
   padding: 0 28px 0 var(--bv-space-3);
   border: 1px solid color-mix(in srgb, var(--bv-header-title) 35%, transparent);
   border-radius: var(--bv-radius);
@@ -163,6 +163,12 @@
   }
   .bv-header__nav[data-open] {
     display: flex;
+    /* A long menu on a short (landscape) phone scrolls inside the header
+       instead of running off the bottom of a sticky bar. */
+    max-height: calc(100vh - var(--bv-header-height));
+    max-height: calc(100dvh - var(--bv-header-height));
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
   .bv-header__links {
     flex-direction: column;
@@ -239,6 +245,7 @@
 }
 .bv-page-header__text {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--bv-space-2);
   max-width: 68ch;
 }
@@ -294,6 +301,7 @@
 
 .bv-stack {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--bv-space-6);
 }
 
@@ -729,6 +737,7 @@ span.bv-fav {
 
 .bv-skin-detail {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--bv-space-4);
   max-width: 720px;
 }
@@ -750,6 +759,7 @@ span.bv-fav {
 
 .bv-skin-detail__content {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--bv-space-3);
   max-width: 440px;   /* the guide's detail column; Wear fills this, not the page */
 }
@@ -808,6 +818,7 @@ span.bv-fav {
 
 .bv-form {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--bv-space-4);
   max-width: 480px;   /* fields wider than this are hard to scan */
 }
@@ -818,6 +829,7 @@ span.bv-fav {
 
 .bv-field {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--bv-space-1);
   max-width: 480px;
 }
@@ -907,6 +919,7 @@ span.bv-fav {
 /* Search: the action sits inside the field, as in the guide */
 .bv-search {
   display: flex;
+  min-width: 0;
   max-width: 480px;
   align-items: stretch;
   border: 1px solid var(--bv-control);
@@ -920,6 +933,7 @@ span.bv-fav {
 }
 .bv-search input {
   flex: 1;
+  width: 0;          /* no intrinsic width: it fills what's left, however narrow */
   min-width: 0;
   min-height: var(--bv-target);
   padding: 0 var(--bv-space-3);
@@ -941,11 +955,14 @@ span.bv-fav {
   filter: grayscale(1);
 }
 .bv-search button {
+  flex: none;
   min-width: 80px;
-  margin: 3px;
+  min-height: var(--bv-target);
+  margin: 0;
   padding: 0 var(--bv-space-3);
   border: 0;
-  border-radius: var(--bv-radius-sm);
+  border-left: 1px solid var(--bv-outline);
+  border-radius: 0 calc(var(--bv-radius) - 1px) calc(var(--bv-radius) - 1px) 0;
   background: var(--bv-search-action);
   color: var(--bv-link);
   font: inherit;
@@ -1228,6 +1245,7 @@ span.bv-fav {
 }
 .bv-dialog__body {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--bv-space-3);
   padding: var(--bv-space-3) var(--bv-space-5) var(--bv-space-5);
 }
@@ -1258,6 +1276,7 @@ span.bv-fav {
 
 .bv-empty {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   gap: var(--bv-space-2);
   padding: var(--bv-space-12) var(--bv-space-4);

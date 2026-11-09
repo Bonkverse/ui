@@ -14,4 +14,5 @@ The first release.
 - **Navigation.** `nav.json` holds the header (Skins, Replays, Players, Tools, Developers), the skin tabs, the account menu and the footer.
 - **Gallery.** `index.html` shows every component, published to GitHub Pages.
 - **Widths.** Wide screens don't stretch things: forms, fields and search stop at 480 px, notices at 720 px, and the skin details column at 440 px, so Wear fills that column rather than the page.
-- **Checks.** `scripts/contrast.mjs` covers 109 color pairs across the three themes, all passing WCAG AA. `scripts/check-version.mjs` checks that every file names the same version.
+- **Any screen size.** Layouts work from a 280 px folded phone to a 3,440 px ultrawide, including landscape phones and 200% zoom. The phone menu scrolls inside the header on short screens. The search button and theme picker are full 44 px targets.
+- **Checks.** `scripts/contrast.mjs` covers 109 color pairs across the three themes, all passing WCAG AA. `scripts/check-version.mjs` checks that every file names the same version. `scripts/responsive.mjs` checks 21 screen sizes in CI.

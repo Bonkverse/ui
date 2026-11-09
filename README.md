@@ -22,6 +22,7 @@ Decided in RFC-0002 ("One Bonkverse look"). Colors and the skin card come from t
 | `img/planet.png` | The Bonkverse planet for the header |
 | `index.html` | The gallery |
 | `scripts/contrast.mjs` | Checks every text and border color pair in all three themes against WCAG AA. CI fails a change that breaks one |
+| `scripts/responsive.mjs` | Opens the gallery at 21 sizes, from a 280 px folded phone to a 3,440 px ultrawide, in all three themes, with menus, dialogs and toasts open. It fails on sideways scrolling, anything off screen, cut-off text, a control under 44 px, or a dialog that doesn't fit. 1,280 px at 200% zoom is the 640 px size |
 
 ## Using it on a page
 
@@ -85,6 +86,7 @@ These come from the design guide. Keep to them when adding components.
 - **Brown.** One brown main action per screen or card (Wear, Create key). Everything else is secondary, ghost or danger.
 - **Gold.** Gold is for favorites only.
 - **Tap targets.** Every control is at least 44 × 44 px. Rows wrap rather than shrink a button.
+- **Any screen size.** Nothing sets a width the screen can't shrink below. Single-column grids use `minmax(0, 1fr)`, and inputs inside flex rows get `width: 0; flex: 1`. Wide things (tables, tab rows, code) scroll inside their own box, never the page. Wide screens cap reading widths (forms 480 px, notices 720 px, the page 1,280 px). `scripts/responsive.mjs` must pass.
 - **Focus.** A 2 px teal ring, 2 px away from the element, everywhere.
 - **Text wraps.** Skin names and creator names wrap. They're never cut off with `…`.
 - **Motion.** Motion is short (110–250 ms) and only shows a change. Under `prefers-reduced-motion` it goes, and the state change still happens.
@@ -106,6 +108,7 @@ Breaking changes (a renamed class or token) bump the minor version while we're b
 node scripts/contrast.mjs            # every pair, with ratios
 node scripts/contrast.mjs --failing  # only failures
 node scripts/check-version.mjs
+node scripts/responsive.mjs         # needs: npm install --no-save playwright && npx playwright install chromium
 python3 -m http.server 8000          # then open http://localhost:8000
 ```
 

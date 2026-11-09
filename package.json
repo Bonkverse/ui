@@ -30,6 +30,7 @@
   "scripts": {
     "check": "node scripts/contrast.mjs --failing && node scripts/check-version.mjs",
     "contrast": "node scripts/contrast.mjs",
+    "responsive": "node scripts/responsive.mjs",
     "gallery": "python3 -m http.server 8000"
   }
 }
