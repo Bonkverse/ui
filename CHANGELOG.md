@@ -13,4 +13,5 @@ The first release.
 - **Behavior.** `ui.js` runs menus, the phone menu, dialogs, copy buttons and toasts.
 - **Navigation.** `nav.json` holds the header (Skins, Replays, Players, Tools, Developers), the skin tabs, the account menu and the footer.
 - **Gallery.** `index.html` shows every component, published to GitHub Pages.
+- **Widths.** Wide screens don't stretch things: forms, fields and search stop at 480 px, notices at 720 px, and the skin details column at 440 px, so Wear fills that column rather than the page.
 - **Checks.** `scripts/contrast.mjs` covers 109 color pairs across the three themes, all passing WCAG AA. `scripts/check-version.mjs` checks that every file names the same version.
