@@ -136,7 +136,7 @@
     <!-- ═══ Page header ═══ -->
     <div class="bv-page-header">
       <div class="bv-page-header__text">
-        <span class="bv-eyebrow">Bonkverse UI · v0.1.2</span>
+        <span class="bv-eyebrow">Bonkverse UI · v0.1.3</span>
         <h1>Component gallery</h1>
         <p class="bv-lead">Every shared piece of the Bonkverse sites. Switch the theme in the header to check each one in Bonkverse, Light and Dark.</p>
       </div>
@@ -218,7 +218,8 @@
           <button class="bv-btn bv-btn--primary" type="button">Wear</button>
           <button class="bv-btn" type="button">Secondary</button>
           <button class="bv-btn bv-btn--ghost" type="button">Copy link</button>
-          <button class="bv-btn bv-btn--danger" type="button">Revoke</button>
+          <button class="bv-btn bv-btn--danger" type="button">Delete</button>
+          <button class="bv-btn bv-btn--danger-outline" type="button">Report</button>
           <button class="bv-btn bv-btn--icon" type="button" aria-label="More actions"><svg aria-hidden="true"><use href="#i-more"/></svg></button>
           <a class="bv-btn" href="#s-buttons"><svg aria-hidden="true"><use href="#i-external"/></svg>Link as button</a>
         </div>
@@ -227,6 +228,7 @@
           <button class="bv-btn" type="button" aria-pressed="true">Selected</button>
           <button class="bv-btn bv-btn--primary" type="button" disabled>Disabled</button>
           <button class="bv-btn" type="button" disabled>Disabled</button>
+          <button class="bv-btn bv-btn--danger" type="button" disabled>Disabled</button>
         </div>
         <div class="g-row">
           <span class="g-label">Wear: ready, pending, success, recoverable error</span>
@@ -381,7 +383,7 @@
             <a class="bv-btn bv-btn--ghost" href="#"><svg aria-hidden="true"><use href="#i-pencil"/></svg>Skin editor</a>
             <a class="bv-btn bv-btn--ghost" href="#"><svg aria-hidden="true"><use href="#i-external"/></svg>Bonkleagues</a>
             <button class="bv-btn bv-btn--ghost" type="button"><svg aria-hidden="true"><use href="#i-refresh"/></svg>Re-render</button>
-            <button class="bv-btn bv-btn--ghost" type="button" data-bv-dialog-open="report"><svg aria-hidden="true"><use href="#i-flag"/></svg>Report</button>
+            <button class="bv-btn bv-btn--danger-outline" type="button" data-bv-dialog-open="report"><svg aria-hidden="true"><use href="#i-flag"/></svg>Report</button>
           </div>
         </div>
       </div>
@@ -442,6 +444,7 @@
           <button class="bv-chip" type="button" aria-pressed="true">Favorites</button>
           <button class="bv-chip" type="button" aria-pressed="false">This week</button>
           <button class="bv-chip" type="button" aria-pressed="false">Has animation</button>
+          <button class="bv-chip" type="button" aria-pressed="false" disabled>Unavailable</button>
         </div>
         <span class="bv-pill">Staff</span>
         <span class="bv-pill bv-pill--accent">Partner</span>
@@ -489,7 +492,7 @@
       <h2 id="s-dialogs">Dialogs</h2>
       <p class="g-intro">Native <code>&lt;dialog&gt;</code>: focus stays inside, Escape or the backdrop closes it, and focus goes back to the button that opened it.</p>
       <div class="g-row">
-        <button class="bv-btn bv-btn--danger" type="button" data-bv-dialog-open="confirm">Revoke key…</button>
+        <button class="bv-btn bv-btn--danger-outline" type="button" data-bv-dialog-open="confirm">Revoke key…</button>
         <button class="bv-btn" type="button" data-bv-dialog-open="zoom">Enlarge a skin</button>
       </div>
     </section>
@@ -603,7 +606,7 @@ console.log(await res.json());</pre>
       </div>
       <div class="bv-dialog__actions">
         <button class="bv-btn" type="button" data-bv-dialog-close>Cancel</button>
-        <button class="bv-btn bv-btn--primary" type="submit">Send report</button>
+        <button class="bv-btn bv-btn--danger" type="submit">Send report</button>
       </div>
     </form>
   </dialog>
