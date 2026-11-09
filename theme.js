@@ -1,5 +1,5 @@
 /*
- * Bonkverse theme (v0.1.0)
+ * Bonkverse theme (v0.1.1)
  *
  * Load this in <head>, before any stylesheet, without defer or async:
  *

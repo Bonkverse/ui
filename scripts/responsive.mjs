@@ -116,6 +116,24 @@ function audit({ SCROLLERS, CONTROLS }) {
     }
   }
 
+  // An open menu must be fully on screen and not clipped by a scrolling parent.
+  for (const menu of document.querySelectorAll(".bv-menu:not([hidden])")) {
+    const r = menu.getBoundingClientRect();
+    let box = menu.parentElement;
+    while (box && box !== document.body) {
+      const s = getComputedStyle(box);
+      if (/(auto|scroll|hidden|clip)/.test(s.overflowY + s.overflowX)) {
+        const b = box.getBoundingClientRect();
+        const visibleBottom = b.top + box.clientHeight + box.scrollTop - box.scrollTop;
+        if (r.left < b.left - 1 || r.right > b.right + 1 || (box.scrollHeight <= box.clientHeight && r.bottom > visibleBottom + 1)) {
+          problems.push(`menu clipped by ${name(box)}: #${menu.id}`);
+        }
+        break;
+      }
+      box = box.parentElement;
+    }
+  }
+
   for (const d of document.querySelectorAll("dialog[open]")) {
     const r = d.getBoundingClientRect();
     if (r.width > vw || r.height > vh + 1 || r.top < -1 || r.left < -1) {
@@ -133,6 +151,13 @@ const STATES = {
       const menuBtn = document.querySelector(".bv-header__menu-btn");
       if (getComputedStyle(menuBtn).display !== "none") menuBtn.click();
       document.querySelector('[aria-controls="tools-menu"]').click();
+    });
+  },
+  "phone menu and account open": async (page) => {
+    await page.evaluate(() => {
+      const menuBtn = document.querySelector(".bv-header__menu-btn");
+      if (getComputedStyle(menuBtn).display !== "none") menuBtn.click();
+      document.querySelector('[aria-controls="account-menu"]').click();
     });
   },
   "overflow menu open": async (page) => {

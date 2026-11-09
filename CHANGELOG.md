@@ -2,6 +2,13 @@
 
 Sites pin a tag (`v0.1.0`). Each entry says what changed and what a site has to do when it upgrades.
 
+## 0.1.1 (2026-11-09)
+
+- **Fix:** in the phone menu, the account menu (and any other menu in the header's end area) opened as a floating box that the scrolling menu cut off. Menus inside the phone menu now open in place, on a full-width line. Found while moving bonkverse.io onto this package.
+- **Gallery:** the header shows the signed-in account menu. `scripts/responsive.mjs` opens it on every size and now fails when an open menu is clipped by a scrolling parent.
+
+Upgrading: no markup changes.
+
 ## 0.1.0 (2026-11-09)
 
 The first release.

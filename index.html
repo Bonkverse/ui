@@ -110,7 +110,19 @@
               <option value="dark">Bonkverse Dark</option>
             </select>
           </label>
-          <a class="bv-btn bv-btn--ghost" href="https://bonkverse.io/login/" style="color: var(--bv-header-link)">Log in</a>
+          <!-- Signed out, this is a plain <a class="bv-header__link" href="/login/">Log in</a> -->
+          <div class="bv-dropdown">
+            <button class="bv-header__link" type="button" aria-expanded="false" aria-controls="account-menu" data-bv-toggle>
+              nova_rider <svg aria-hidden="true"><use href="#i-chevron"/></svg>
+            </button>
+            <div class="bv-menu bv-menu--end" id="account-menu" hidden>
+              <a class="bv-menu__item" href="https://bonkverse.io/my-profile/">My profile</a>
+              <a class="bv-menu__item" href="https://bonkverse.io/settings/profile/">Settings</a>
+              <a class="bv-menu__item" href="https://bonkverse.io/developers/keys/">API keys</a>
+              <div class="bv-menu__divider"></div>
+              <form method="post" action="https://bonkverse.io/logout/"><button class="bv-menu__item" type="submit">Log out</button></form>
+            </div>
+          </div>
         </div>
       </nav>
     </div>
@@ -120,7 +132,7 @@
     <!-- ═══ Page header ═══ -->
     <div class="bv-page-header">
       <div class="bv-page-header__text">
-        <span class="bv-eyebrow">Bonkverse UI · v0.1.0</span>
+        <span class="bv-eyebrow">Bonkverse UI · v0.1.1</span>
         <h1>Component gallery</h1>
         <p class="bv-lead">Every shared piece of the Bonkverse sites. Switch the theme in the header to check each one in Bonkverse, Light and Dark.</p>
       </div>
