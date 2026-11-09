@@ -751,6 +751,7 @@ span.bv-fav {
 .bv-skin-detail__content {
   display: grid;
   gap: var(--bv-space-3);
+  max-width: 440px;   /* the guide's detail column; Wear fills this, not the page */
 }
 
 .bv-skin-detail__title {
@@ -793,7 +794,7 @@ span.bv-fav {
     grid-template-columns: auto minmax(0, 1fr);
     align-items: start;
     column-gap: var(--bv-space-12);
-    max-width: 920px;
+    max-width: 680px;
   }
   .bv-skin-detail > .bv-back {
     grid-column: 1 / -1;
@@ -808,6 +809,7 @@ span.bv-fav {
 .bv-form {
   display: grid;
   gap: var(--bv-space-4);
+  max-width: 480px;   /* fields wider than this are hard to scan */
 }
 .bv-form > .bv-btn,
 .bv-form > .bv-check {
@@ -817,6 +819,7 @@ span.bv-fav {
 .bv-field {
   display: grid;
   gap: var(--bv-space-1);
+  max-width: 480px;
 }
 
 .bv-label {
@@ -904,6 +907,7 @@ span.bv-fav {
 /* Search: the action sits inside the field, as in the guide */
 .bv-search {
   display: flex;
+  max-width: 480px;
   align-items: stretch;
   border: 1px solid var(--bv-control);
   border-radius: var(--bv-radius);
@@ -1106,6 +1110,7 @@ span.bv-fav {
 
 .bv-notice {
   display: flex;
+  max-width: 720px;   /* a readable line; inside a narrower card it just fills it */
   align-items: flex-start;
   gap: var(--bv-space-3);
   padding: var(--bv-space-3) var(--bv-space-4);
