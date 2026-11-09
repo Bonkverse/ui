@@ -20,3 +20,24 @@ jobs:
         run: node scripts/contrast.mjs
       - name: Version strings match package.json
         run: node scripts/check-version.mjs
+
+  responsive:
+    # The gallery at 21 sizes (280 px folded phone to 3440 px ultrawide), in
+    # all three themes, with menus, dialogs and toasts open: no sideways
+    # scrolling, nothing off screen, no cut-off text, 44 px targets.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-save playwright@1.63.0
+      - run: npx playwright install --with-deps chromium
+      - name: Responsive check
+        run: node scripts/responsive.mjs --shots
+      - name: Keep screenshots if it fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: responsive-shots
+          path: shots/

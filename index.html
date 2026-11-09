@@ -32,7 +32,7 @@
     .g-theme { border: 1px solid var(--bv-outline); border-radius: var(--bv-radius); overflow: hidden; }
     .g-theme__bar { display: flex; justify-content: space-between; align-items: center; padding: 0 var(--bv-space-4); min-height: 44px; background: var(--bv-header); color: var(--bv-header-title); font-weight: 700; font-size: var(--bv-text-sm); }
     .g-theme__bar span { color: var(--bv-header-meta); font-weight: 500; font-size: var(--bv-text-xs); }
-    .g-theme__body { display: grid; gap: var(--bv-space-3); padding: var(--bv-space-4); }
+    .g-theme__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--bv-space-3); padding: var(--bv-space-4); }
     .g-theme__body h3 { color: var(--bv-heading); }
 
     .g-swatches { display: grid; gap: var(--bv-space-2); grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
