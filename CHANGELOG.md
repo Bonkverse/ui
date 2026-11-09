@@ -2,6 +2,24 @@
 
 Sites pin a tag (`v0.1.0`). Each entry says what changed and what a site has to do when it upgrades.
 
+## 0.1.2 (2026-11-09)
+
+From the first review of bonkverse.io on the package.
+
+- **Enlarge.** On search cards, clicking "Enlarge" made the label jump to the middle of the card and did nothing. Now the whole artwork area is the button, so the label and the space around the circle open it too, and only the image moves on press. The image also grows slightly on hover, so it reads as clickable.
+- **Full size.** The Enlarge dialog has a **Full size** button (`data-bv-zoom-full`, handled by `ui.js`) that fills the screen with the image, up to its real size. Closing the dialog resets it.
+- **Skin details.** The layout is centered and wider (240 px artwork from 900 px). Wear has a sensible width instead of filling the row. **Open in** and **···** are gone: Copy link, Skin editor, Bonkleagues, Re-render and Report are labeled buttons in one row (`.bv-skin-detail__tools`, replacing `__more`).
+- **Header account.** The name links to your profile, and a separate chevron button opens the account menu (`.bv-header__account`). Only chevrons turn when a menu opens (`.bv-chevron`, or Lucide's `chevron-down`). Before, every icon in the button turned.
+- **Logo.** The purple planet (`img/logo.png`) replaces the old `img/planet.png`.
+- **Autofill.** Fields the browser fills in keep the theme's colors instead of turning yellow.
+- **Footer.** Less padding. `<body class="bv-app">` keeps it at the bottom of short pages.
+- **Code blocks.** An optional bar shows a label and the Copy button (`.bv-code__bar`). Tabs switch between languages (`[role=tablist][data-bv-tabs]` in `ui.js`), and the chosen language is remembered across the site.
+
+Upgrading:
+- Rename `bv-skin-detail__more` to `__tools`.
+- Use the `bv-header__account` markup.
+- Point the logo at `img/logo.png`.
+
 ## 0.1.1 (2026-11-09)
 
 - **Fix:** in the phone menu, the account menu (and any other menu in the header's end area) opened as a floating box that the scrolling menu cut off. Menus inside the phone menu now open in place, on a full-width line. Found while moving bonkverse.io onto this package.

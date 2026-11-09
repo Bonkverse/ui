@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#2a4054">
   <title>Bonkverse UI gallery</title>
   <meta name="description" content="Every shared Bonkverse component in the three themes: Bonkverse, Bonkverse Light and Bonkverse Dark.">
-  <link rel="icon" href="img/planet.png">
+  <link rel="icon" href="img/logo.png">
   <!-- 1. Theme first, before any CSS, so there's no flash -->
   <script src="theme.js"></script>
   <!-- 2. The package -->
@@ -49,12 +49,15 @@
     .g-demo-controls { display: flex; flex-wrap: wrap; gap: var(--bv-space-3); align-items: center; margin-bottom: var(--bv-space-4); }
   </style>
 </head>
-<body>
+<body class="bv-app">
   <!-- Icons: simple outlined shapes, 24 × 24, stroke = currentColor -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4L2.8 9.5l6.4-.8z" stroke-width="2" stroke-linejoin="round"/></symbol>
       <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6.5 18.5c1.3-2.2 3.2-3.3 5.5-3.3s4.2 1.1 5.5 3.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-maximize" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM14 6l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
       <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
       <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -77,7 +80,7 @@
   <header class="bv-header">
     <div class="bv-header__inner">
       <a class="bv-header__brand" href="https://bonkverse.io/">
-        <img src="img/planet.png" alt="" width="30" height="30">
+        <img src="img/logo.png" alt="" width="30" height="30">
         <span>Bonkverse</span>
       </a>
       <button class="bv-btn bv-btn--icon bv-header__menu-btn" type="button"
@@ -91,7 +94,7 @@
           <li><a class="bv-header__link" href="https://bonkverse.io/players/">Players</a></li>
           <li>
             <button class="bv-header__link" type="button" aria-expanded="false" aria-controls="tools-menu" data-bv-toggle>
-              Tools <svg aria-hidden="true"><use href="#i-chevron"/></svg>
+              Tools <svg class="bv-chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
             </button>
             <div class="bv-menu" id="tools-menu" hidden>
               <a class="bv-menu__item" href="https://editor.bonkverse.io/">Skin editor</a>
@@ -111,9 +114,10 @@
             </select>
           </label>
           <!-- Signed out, this is a plain <a class="bv-header__link" href="/login/">Log in</a> -->
-          <div class="bv-dropdown">
-            <button class="bv-header__link" type="button" aria-expanded="false" aria-controls="account-menu" data-bv-toggle>
-              nova_rider <svg aria-hidden="true"><use href="#i-chevron"/></svg>
+          <div class="bv-dropdown bv-header__account">
+            <a class="bv-header__link" href="https://bonkverse.io/my-profile/"><svg aria-hidden="true"><use href="#i-user"/></svg>nova_rider</a>
+            <button class="bv-header__link" type="button" aria-label="Account menu" aria-expanded="false" aria-controls="account-menu" data-bv-toggle>
+              <svg class="bv-chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
             </button>
             <div class="bv-menu bv-menu--end" id="account-menu" hidden>
               <a class="bv-menu__item" href="https://bonkverse.io/my-profile/">My profile</a>
@@ -132,7 +136,7 @@
     <!-- ═══ Page header ═══ -->
     <div class="bv-page-header">
       <div class="bv-page-header__text">
-        <span class="bv-eyebrow">Bonkverse UI · v0.1.1</span>
+        <span class="bv-eyebrow">Bonkverse UI · v0.1.2</span>
         <h1>Component gallery</h1>
         <p class="bv-lead">Every shared piece of the Bonkverse sites. Switch the theme in the header to check each one in Bonkverse, Light and Dark.</p>
       </div>
@@ -370,29 +374,14 @@
             <button class="bv-btn bv-btn--primary bv-wear" type="button">Wear</button>
           </div>
           <p class="bv-status" role="status"></p>
-          <div class="bv-skin-detail__more">
+          <div class="bv-skin-detail__tools">
             <button class="bv-btn bv-btn--ghost" type="button" data-bv-copy-text="https://bonkverse.io/skins/123/" data-bv-copied-label="Link copied">
               <svg aria-hidden="true"><use href="#i-copy"/></svg><span>Copy link</span>
             </button>
-            <div class="bv-dropdown">
-              <button class="bv-btn bv-btn--ghost" type="button" aria-expanded="false" aria-controls="open-in" data-bv-toggle>
-                Open in <svg aria-hidden="true"><use href="#i-chevron"/></svg>
-              </button>
-              <div class="bv-menu" id="open-in" hidden>
-                <a class="bv-menu__item" href="#"><svg aria-hidden="true"><use href="#i-external"/></svg>Skin editor</a>
-                <a class="bv-menu__item" href="#"><svg aria-hidden="true"><use href="#i-external"/></svg>Bonkleagues</a>
-              </div>
-            </div>
-            <div class="bv-dropdown">
-              <button class="bv-btn bv-btn--ghost bv-btn--icon" type="button" aria-label="More actions" aria-expanded="false" aria-controls="overflow" data-bv-toggle>
-                <svg aria-hidden="true"><use href="#i-more"/></svg>
-              </button>
-              <div class="bv-menu bv-menu--end" id="overflow" hidden>
-                <button class="bv-menu__item" type="button"><svg aria-hidden="true"><use href="#i-refresh"/></svg>Re-render</button>
-                <div class="bv-menu__divider"></div>
-                <button class="bv-menu__item bv-menu__item--danger" type="button" data-bv-dialog-open="report"><svg aria-hidden="true"><use href="#i-flag"/></svg>Report</button>
-              </div>
-            </div>
+            <a class="bv-btn bv-btn--ghost" href="#"><svg aria-hidden="true"><use href="#i-pencil"/></svg>Skin editor</a>
+            <a class="bv-btn bv-btn--ghost" href="#"><svg aria-hidden="true"><use href="#i-external"/></svg>Bonkleagues</a>
+            <button class="bv-btn bv-btn--ghost" type="button"><svg aria-hidden="true"><use href="#i-refresh"/></svg>Re-render</button>
+            <button class="bv-btn bv-btn--ghost" type="button" data-bv-dialog-open="report"><svg aria-hidden="true"><use href="#i-flag"/></svg>Report</button>
           </div>
         </div>
       </div>
@@ -527,9 +516,22 @@
         <span class="bv-loader" role="status"><span class="bv-loader__ring" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Loading replays…</span>
       </div>
       <div class="bv-code" style="margin-top:var(--bv-space-5)" data-g-code>
-        <pre id="code-sample">curl https://bonkverse.io/api/v1/players/nova_rider/ \
+        <div class="bv-tabs" role="tablist" aria-label="Language" data-bv-tabs="code">
+          <button class="bv-tab" type="button" role="tab" aria-selected="true" aria-controls="code-curl">curl</button>
+          <button class="bv-tab" type="button" role="tab" aria-selected="false" aria-controls="code-js" tabindex="-1">JavaScript</button>
+        </div>
+        <div id="code-curl" role="tabpanel">
+          <div class="bv-code__bar"><span>Terminal</span><button class="bv-btn bv-btn--ghost" type="button" data-bv-copy="code-curl-text"><svg aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button></div>
+          <pre id="code-curl-text">curl https://bonkverse.io/api/v1/players/nova_rider/ \
   -H "Authorization: Bearer $BONKVERSE_API_KEY"</pre>
-        <button class="bv-btn bv-btn--ghost" type="button" data-bv-copy="code-sample"><svg aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button>
+        </div>
+        <div id="code-js" role="tabpanel" hidden>
+          <div class="bv-code__bar"><span>Node 18+ or a browser</span><button class="bv-btn bv-btn--ghost" type="button" data-bv-copy="code-js-text"><svg aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button></div>
+          <pre id="code-js-text">const res = await fetch("https://bonkverse.io/api/v1/players/nova_rider/", {
+  headers: { Authorization: `Bearer ${process.env.BONKVERSE_API_KEY}` },
+});
+console.log(await res.json());</pre>
+        </div>
       </div>
     </section>
   </main>
@@ -565,7 +567,10 @@
   <dialog class="bv-dialog bv-dialog--zoom" id="zoom" aria-labelledby="zoom-title">
     <div class="bv-dialog__header">
       <h2 class="bv-dialog__title" id="zoom-title">Midnight Comet</h2>
-      <button class="bv-btn bv-btn--ghost bv-btn--icon" type="button" aria-label="Close" data-bv-dialog-close><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+      <div class="bv-dialog__tools">
+        <button class="bv-btn bv-btn--ghost" type="button" aria-pressed="false" data-bv-zoom-full><svg aria-hidden="true"><use href="#i-maximize"/></svg><span>Full size</span></button>
+        <button class="bv-btn bv-btn--ghost bv-btn--icon" type="button" aria-label="Close" data-bv-dialog-close><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
     </div>
     <div class="bv-dialog__body">
       <img src="img/samples/comet.svg" alt="Midnight Comet, enlarged" width="264" height="264">

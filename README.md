@@ -19,7 +19,7 @@ Decided in RFC-0002 ("One Bonkverse look"). Colors and the skin card come from t
 | `ui.js` | Menus, the phone menu, dialogs, copy buttons and toasts |
 | `nav.json` | The header, skin tabs, account menu and footer links. Every site renders its header from this |
 | `fonts/` | Jost 400, 500, 600 and 700 (Latin and Latin Extended), with its licence (`OFL.txt`) |
-| `img/planet.png` | The Bonkverse planet for the header |
+| `img/logo.png` | The Bonkverse logo (the purple planet), 128 px, round, for the header and favicon |
 | `index.html` | The gallery |
 | `scripts/contrast.mjs` | Checks every text and border color pair in all three themes against WCAG AA. CI fails a change that breaks one |
 | `scripts/responsive.mjs` | Opens the gallery at 21 sizes, from a 280 px folded phone to a 3,440 px ultrawide, in all three themes, with menus, dialogs and toasts open. It fails on sideways scrolling, anything off screen, cut-off text, a control under 44 px, or a dialog that doesn't fit. 1,280 px at 200% zoom is the 640 px size |
