@@ -1,5 +1,5 @@
 /*
- * Bonkverse UI components (v0.1.0)
+ * Bonkverse UI components (v0.1.1)
  * Needs tokens.css and base.css first. Every class starts with bv-.
  * index.html shows each one in all three themes with its markup.
  *
@@ -179,13 +179,23 @@
     width: 100%;
     justify-content: space-between;
   }
-  .bv-header__links .bv-menu {
+  /* Menus open in place inside the phone menu (it scrolls, so a floating
+     menu would be clipped). */
+  .bv-header__nav .bv-menu {
     position: static;
     min-width: 0;
     margin: var(--bv-space-1) 0 var(--bv-space-2) var(--bv-space-4);
     box-shadow: none;
   }
+  .bv-header__end .bv-dropdown {
+    display: contents; /* its menu wraps onto a full-width line below */
+  }
+  .bv-header__end .bv-menu {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
   .bv-header__end {
+    flex-wrap: wrap;
     justify-content: space-between;
     padding-top: var(--bv-space-2);
     border-top: 1px solid color-mix(in srgb, var(--bv-header-title) 20%, transparent);
