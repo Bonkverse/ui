@@ -1,6 +1,6 @@
 {
   "name": "@bonkverse/ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The shared look of the Bonkverse sites: color tokens for three themes, Jost, base styles and components. Plain CSS, no build step.",
   "license": "UNLICENSED",
   "private": true,
@@ -15,7 +15,7 @@
     "ui.js",
     "nav.json",
     "fonts/",
-    "img/planet.png"
+    "img/logo.png"
   ],
   "exports": {
     "./tokens.css": "./tokens.css",

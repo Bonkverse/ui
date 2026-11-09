@@ -160,11 +160,10 @@ const STATES = {
       document.querySelector('[aria-controls="account-menu"]').click();
     });
   },
-  "overflow menu open": async (page) => {
+  "zoom dialog, full size": async (page) => {
     await page.evaluate(() => {
-      const button = document.querySelector('[aria-controls="overflow"]');
-      button.scrollIntoView({ block: "center" });
-      button.click();
+      document.getElementById("zoom").showModal();
+      document.querySelector("[data-bv-zoom-full]").click();
     });
   },
   "zoom dialog": async (page) => {
