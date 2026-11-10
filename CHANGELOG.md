@@ -2,6 +2,25 @@
 
 Sites pin a tag (`v0.1.0`). Each entry says what changed and what a site has to do when it upgrades.
 
+## 0.1.3 (2026-11-09)
+
+Contrast and states: in every theme you can tell a button, chip or tag apart from what's behind it, and see when it's hovered, pressed, selected or unavailable.
+
+- **Hover** has its own fill (`--bv-hover`), and bordered controls (buttons, chips) darken their border to the text color. Before, hover used the selected fill, which in Light was barely different from the card.
+- **Selected** (`aria-pressed`, a current chip) is a stronger teal fill with a 2 px teal border, so it doesn't look like hover; hovering it thickens the border. Chips with `aria-current` get it too.
+- **Unavailable** buttons and chips fade and get a dashed border.
+- **Danger.** `.bv-btn--danger` is now solid red with white text, for the step you can't undo (Delete, Revoke, a delete dialog's confirm). The old red-outline look is `.bv-btn--danger-outline`, now on a red tint: use it for Report and for buttons that open a confirm. New tokens: `--bv-danger-solid`, `-hover`, `-pressed`, `--bv-danger-ink`, `--bv-danger-border`.
+- **Menus.** Danger items hover red-tinted.
+- **Tabs.** The selected code tab (`.bv-tabs [role=tab]`) lost its teal underline to the reset rule; it has it again, and hovering a tab shows a grey one.
+- **Header.** Hovering the brand underlines it, and hovering the current page's link deepens its fill.
+- **Pills** use the text color on a light fill instead of grey on nothing; the accent pill is filled.
+- **Fix:** `<body class="bv-app">` stretched everything placed directly in `<body>` to full width, including fixed toasts and panels, which pushed a site's corner toast off the left edge. The rule now has zero specificity and leaves dialogs and toasts alone.
+- `scripts/contrast.mjs` checks the new pairs (130 in all).
+
+Upgrading:
+- Buttons with `bv-btn--danger` that only open a confirm (or report something) become `bv-btn--danger-outline`.
+- Anything that used `--bv-selected` for hover should use `--bv-hover`.
+
 ## 0.1.2 (2026-11-09)
 
 From the first review of bonkverse.io on the package.
