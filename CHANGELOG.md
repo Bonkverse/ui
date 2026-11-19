@@ -2,6 +2,15 @@
 
 Sites pin a tag (`v0.1.0`). Each entry says what changed and what a site has to do when it upgrades.
 
+## 0.1.4 (2026-11-19)
+
+Menu labels for pages bonkverse.io renamed.
+
+- **Skin tabs:** "Leaderboards" is now **Top skins** (bonkverse.io merged its three leaderboards into one Top skins page). The id stays `leaderboards` and the link is the same, so active-tab highlighting keeps working.
+- **Footer:** "Social stats" is now **Community stats**, the page's new name.
+
+Upgrading: nothing to change beyond syncing the release.
+
 ## 0.1.3 (2026-11-09)
 
 Contrast and states: in every theme you can tell a button, chip or tag apart from what's behind it, and see when it's hovered, pressed, selected or unavailable.
