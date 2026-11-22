@@ -2,6 +2,30 @@
 
 Sites pin a tag (`v0.1.0`). Each entry says what changed and what a site has to do when it upgrades.
 
+## 0.1.6 (2026-11-22)
+
+Borderless surfaces, and a highlight used only where it matters. The Bonkverse Discord found the teal outlines on everything "shiny" and "AI slop". The site owner picked the borderless option from a mockup.
+
+- **Surfaces, not borders:**
+  - `.bv-card` and `.bv-skin-card` have no visible border. The step from page to card and a soft shadow (`--bv-card-shadow`) are the edge. The border stays as `transparent`, so forced-colors mode still draws it.
+  - The Bonkverse theme's page and card are darker: page `#141e27`, card `#1f2e3a`, thumb and input `#17232d`.
+- **`--bv-inset` (new):** the fill for things inside a card. `.bv-notice` uses it, with no border and no 3px left stripe. Danger notices keep a red border.
+- **Quieter lines:**
+  - `--bv-outline` and `--bv-divider` are softer, for table rows and separators only.
+  - `.bv-tabs`, the header, `.bv-table-wrap`, `.bv-code`, `.bv-pill`, toasts and inline `code` drop their borders. The selected tab keeps its teal underline.
+- **Selected** (`aria-pressed`, a current chip) is the teal fill with a 1px teal border. The extra inset ring is gone. Hovering it turns the border to the text color. The thin border stays so selection isn't shown by fill alone. `.bv-pill--accent` is the fill only.
+- **Ghost buttons** hover with `--bv-hover` instead of a teal border.
+- **`.bv-highlight` / `--bv-highlight` (new):** a teal ring plus soft glow. Use it for **at most one thing per view** that's worth the user's attention: the week's most active player, your own row, something new, something to do. Never for selection, hover or labels.
+- **`--bv-series-1..4` (new):** chart colors for each theme.
+- **`scripts/contrast.mjs`:** adds pairs for the inset fill and the highlight ring. 148 pairs, 0 failing.
+
+Upgrading:
+
+- Sync the release.
+- Drop site CSS that draws borders on cards or nested items, and use `--bv-inset` for things inside a card.
+- Replace teal outlines that aren't focus, selection or a highlight.
+- Switch chart colors to `--bv-series-N`.
+
 ## 0.1.5 (2026-11-22)
 
 Jost's Futura-style lowercase "a", asked for in the Bonkverse Discord.

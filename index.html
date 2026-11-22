@@ -136,7 +136,7 @@
     <!-- ═══ Page header ═══ -->
     <div class="bv-page-header">
       <div class="bv-page-header__text">
-        <span class="bv-eyebrow">Bonkverse UI · v0.1.5</span>
+        <span class="bv-eyebrow">Bonkverse UI · v0.1.6</span>
         <h1>Component gallery</h1>
         <p class="bv-lead">Every shared piece of the Bonkverse sites. Switch the theme in the header to check each one in Bonkverse, Light and Dark.</p>
       </div>
@@ -484,6 +484,16 @@
       <div class="g-row" style="margin-top:var(--bv-space-4)">
         <button class="bv-btn" type="button" onclick="BonkverseUI.toast('Link copied', 'success')">Show a success toast</button>
         <button class="bv-btn" type="button" onclick="BonkverseUI.toast('Couldn’t save your vote. Check your connection and try again.', 'error')">Show an error toast</button>
+      </div>
+    </section>
+
+    <!-- ═══ Highlight ═══ -->
+    <section class="g-section" aria-labelledby="s-highlight">
+      <h2 id="s-highlight">Highlight</h2>
+      <p class="g-intro">Cards have no border: the step from page to card, plus a soft shadow, is the edge, and things inside a card use the inset fill. A teal ring and glow, <code>.bv-highlight</code>, marks the one thing on a screen worth the user's attention: the week's most active player, your own row, something new, something to do. At most one per view. Selection, hover and labels never use it.</p>
+      <div class="g-row" style="align-items:stretch">
+        <div class="bv-card" style="flex:1 1 240px"><strong>A plain card</strong><p class="g-intro" style="margin:var(--bv-space-2) 0 0">No border, a shadow and a step in color.</p></div>
+        <div class="bv-card bv-highlight" data-g-code style="flex:1 1 240px"><strong>Most active this week</strong><p class="g-intro" style="margin:var(--bv-space-2) 0 0">The one highlighted thing on this screen.</p></div>
       </div>
     </section>
 
