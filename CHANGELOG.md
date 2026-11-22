@@ -2,6 +2,15 @@
 
 Sites pin a tag (`v0.1.0`). Each entry says what changed and what a site has to do when it upgrades.
 
+## 0.1.5 (2026-11-22)
+
+Jost's Futura-style lowercase "a", asked for in the Bonkverse Discord.
+
+- **Fonts:** the Jost files are rebuilt from Google Fonts' Jost 3.710 (the same version as before) and now keep the `ss01` feature, which the old files had dropped. They're about the same size. `scripts/build_fonts.py` rebuilds them.
+- **base.css:** `body` turns on `font-feature-settings: "ss01" 1`, so text uses the single-story "a". `code`, `kbd` and `pre` reset it to `normal`, so monospace fonts keep their usual letters.
+
+Upgrading: sync the release (the font files change too). If a site sets `font-feature-settings` on an element, include `"ss01" 1` there, or that element goes back to the two-story "a". `font-variant-numeric: tabular-nums` is a separate property and keeps working alongside it.
+
 ## 0.1.4 (2026-11-19)
 
 Menu labels for pages bonkverse.io renamed.
