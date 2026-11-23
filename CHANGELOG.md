@@ -2,6 +2,32 @@
 
 Sites pin a tag (`v0.1.0`). Each entry says what changed and what a site has to do when it upgrades.
 
+## 0.1.7 (2026-11-23)
+
+Seasonal themes: Halloween, Christmas and New Year, across every site, with a switch to turn them off.
+
+- **`seasons.css` (new):** each season on top of each of the three themes (nine palettes). It changes the page, card and inset surfaces, the header, the accent (links, focus, selection, highlight, first chart color) and the main action. Favorites stay gold and errors stay red. `scripts/contrast.mjs` checks every season in every theme: 592 pairs, 0 failing.
+  - **Halloween** (October): dusk purple, pumpkin orange.
+  - **Christmas** (December 1–30): pine green, berry-red header, frost-green accent.
+  - **New Year** (December 31 – January 7): midnight navy, champagne and violet.
+- **Small touches:**
+  - A badge on the logo: a pumpkin, an ornament or a star.
+  - One light animation in the header: a bat crosses once, snow drifts slowly, or confetti falls once. There's no animation with reduce motion.
+  - `data-bv-season-text="<season>"` shows an element only in that season, for greetings.
+- **theme.js** works out the season from the visitor's own date.
+  - It sets `data-bv-season-now` (the calendar season) and `data-bv-season` (the season showing) on `<html>`.
+  - Switching seasons off is saved as `bv-season=off` on `.bonkverse.io`, like the theme, so it applies on every site.
+  - `<input type="checkbox" data-bv-season-toggle>` inside `.bv-season-toggle` is the switch. It only shows while a season is on the calendar.
+  - `?bv-season=halloween|christmas|newyear|none` previews a season on one page without saving.
+  - New API: `BonkverseTheme.season()`, `seasonNow()`, `setSeasonal(on)`, and the `bv:seasonchange` event.
+- **Gallery:** a Seasons section with all nine palettes, preview links and the switch in the header.
+
+Upgrading:
+
+- Load `seasons.css` after `components.css`.
+- Put the switch next to the theme picker: `<label class="bv-season-toggle"><input type="checkbox" data-bv-season-toggle> <span>Seasonal theme</span></label>`.
+- Drop any seasonal stylesheet of your own.
+
 ## 0.1.6 (2026-11-22)
 
 Borderless surfaces, and a highlight used only where it matters. The Bonkverse Discord found the teal outlines on everything "shiny" and "AI slop". The site owner picked the borderless option from a mockup.

@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="seasons.css">
   <script src="ui.js" defer></script>
   <!-- 3. Gallery-only layout (not part of the package) -->
   <style>
@@ -113,6 +114,7 @@
               <option value="dark">Bonkverse Dark</option>
             </select>
           </label>
+          <label class="bv-season-toggle"><input type="checkbox" data-bv-season-toggle checked> <span>Seasonal theme</span></label>
           <!-- Signed out, this is a plain <a class="bv-header__link" href="/login/">Log in</a> -->
           <div class="bv-dropdown bv-header__account">
             <a class="bv-header__link" href="https://bonkverse.io/my-profile/"><svg aria-hidden="true"><use href="#i-user"/></svg>nova_rider</a>
@@ -136,7 +138,7 @@
     <!-- ═══ Page header ═══ -->
     <div class="bv-page-header">
       <div class="bv-page-header__text">
-        <span class="bv-eyebrow">Bonkverse UI · v0.1.6</span>
+        <span class="bv-eyebrow">Bonkverse UI · v0.1.7</span>
         <h1>Component gallery</h1>
         <p class="bv-lead">Every shared piece of the Bonkverse sites. Switch the theme in the header to check each one in Bonkverse, Light and Dark.</p>
       </div>
@@ -497,6 +499,37 @@
       </div>
     </section>
 
+    <!-- ═══ Seasons ═══ -->
+    <section class="g-section" aria-labelledby="s-seasons">
+      <h2 id="s-seasons">Seasons</h2>
+      <p class="g-intro">With <code>seasons.css</code> loaded, <code>theme.js</code> turns on Halloween in October, Christmas from December 1 to 30 and New Year from December 31 to January 7, on top of whichever theme someone picked. Each season changes the surfaces, the accent, the header and the main action, adds a badge to the logo and one light header animation (none with reduce motion). A <strong>Seasonal theme</strong> switch appears next to the theme picker while a season is on the calendar.</p>
+      <div class="g-row">
+        <span class="g-label">Preview this whole page</span>
+        <a class="bv-btn" href="?bv-season=halloween#s-seasons">Halloween</a>
+        <a class="bv-btn" href="?bv-season=christmas#s-seasons">Christmas</a>
+        <a class="bv-btn" href="?bv-season=newyear#s-seasons">New Year</a>
+        <a class="bv-btn bv-btn--ghost" href="?bv-season=none#s-seasons">No season</a>
+      </div>
+      <div class="g-row">
+        <span class="g-label">Seasonal text</span>
+        <p data-bv-season-text="halloween" data-g-code>🎃 Spooky skins are out for October.</p>
+        <p data-bv-season-text="christmas">Happy holidays from Bonkverse.</p>
+        <p data-bv-season-text="newyear">Happy New Year from Bonkverse!</p>
+        <p class="bv-muted">(Shows only in its season: preview one above.)</p>
+      </div>
+      <div class="g-themes g-seasons" style="margin-top:var(--bv-space-6)">
+        <div class="g-theme bv-theme-scope" data-bv-theme="bonkverse" data-bv-season="halloween"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="light" data-bv-season="halloween"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="dark" data-bv-season="halloween"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="bonkverse" data-bv-season="christmas"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="light" data-bv-season="christmas"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="dark" data-bv-season="christmas"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="bonkverse" data-bv-season="newyear"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="light" data-bv-season="newyear"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="dark" data-bv-season="newyear"></div>
+      </div>
+    </section>
+
     <!-- ═══ Dialogs ═══ -->
     <section class="g-section" aria-labelledby="s-dialogs">
       <h2 id="s-dialogs">Dialogs</h2>
@@ -627,9 +660,12 @@ console.log(await res.json());</pre>
     // Theme comparison panels
     var tpl = document.getElementById("theme-panel");
     var names = { bonkverse: "", light: "Light", dark: "Dark" };
+    var seasonNames = { halloween: "Halloween", christmas: "Christmas", newyear: "New Year" };
     document.querySelectorAll(".g-theme").forEach(function (panel) {
       panel.appendChild(tpl.content.cloneNode(true));
-      panel.querySelector("[data-name]").textContent = names[panel.dataset.bvTheme] || "Default";
+      var name = names[panel.dataset.bvTheme] || "Default";
+      if (panel.dataset.bvSeason) name = seasonNames[panel.dataset.bvSeason] + (name ? " · " + name : "");
+      panel.querySelector("[data-name]").textContent = name;
     });
 
     // Swatches for the current theme
