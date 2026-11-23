@@ -2,6 +2,17 @@
 
 Sites pin a tag (`v0.1.0`). Each entry says what changed and what a site has to do when it upgrades.
 
+## 0.1.8 (2026-11-23)
+
+Gallery only. No CSS or script changes; sites that don't serve the gallery have nothing to do.
+
+- **Gallery:** the sample account in the header ("nova_rider" and its menu) no longer links to bonkverse.io. "nova_rider", My profile, Settings and API keys opened the viewer's own pages, and Log out was a real form. They're now sample links that go nowhere.
+
+Upgrading:
+
+- bonkverse.io: `python scripts/sync_ui.py v0.1.8`, which updates the gallery at bonkverse.io/ui.
+- Replay site and docs: optional. They don't ship the gallery.
+
 ## 0.1.7 (2026-11-23)
 
 Seasonal themes: Halloween, Christmas and New Year, across every site, with a switch to turn them off. And one **Appearance** button in the header for the theme and the season switch.
