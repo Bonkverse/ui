@@ -183,7 +183,7 @@
    <div class="bv-dropdown bv-appearance">
      <button class="bv-header__link" type="button" aria-expanded="false"
              aria-controls="bv-appearance" data-bv-toggle>
-       <svg …palette…/><span class="bv-appearance__label">Appearance</span>
+       <svg …palette…/><span class="bv-appearance__label bv-visually-hidden">Appearance</span>
      </button>
      <div class="bv-menu bv-menu--end bv-appearance__menu" id="bv-appearance" hidden>
        <label class="bv-appearance__field"><span>Theme</span>
@@ -195,14 +195,6 @@
 .bv-appearance > .bv-header__link {
   min-width: var(--bv-target);
   justify-content: center;
-}
-.bv-appearance__label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
 }
 .bv-appearance__menu {
   display: grid;
@@ -274,12 +266,13 @@
     width: auto;
   }
   /* In the phone menu the palette button says what it is */
-  .bv-appearance__label {
-    position: static;
+  .bv-appearance__label.bv-visually-hidden {
+    position: static !important;
     width: auto;
     height: auto;
+    margin: 0;
     overflow: visible;
-    clip-path: none;
+    clip: auto;
   }
   .bv-header__end .bv-menu {
     flex-basis: 100%;
