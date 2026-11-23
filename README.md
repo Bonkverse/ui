@@ -15,13 +15,14 @@ Decided in RFC-0002 ("One Bonkverse look"). Colors and the skin card come from t
 | `tokens.css` | Colors for the three themes (Bonkverse, Bonkverse Light, Bonkverse Dark), plus type sizes, spacing, corners and motion timings |
 | `base.css` | Jost, the page background, text, links, the focus ring, `.bv-visually-hidden`, reduced motion |
 | `components.css` | Header and footer, page header, buttons, menus, skin card and grid, skin details, inputs and search, tabs, chips, pills, tables, notices, toasts, dialogs, empty and loading states, code blocks |
-| `theme.js` | Applies the saved theme before the page paints, and runs the theme picker |
+| `seasons.css` | Halloween (October), Christmas (December 1–30) and New Year (December 31 – January 7) on top of each theme, the logo badge, one light header animation and the "Seasonal theme" switch |
+| `theme.js` | Applies the saved theme and the current season before the page paints, and runs the theme picker and the season switch |
 | `ui.js` | Menus, the phone menu, dialogs, copy buttons and toasts |
 | `nav.json` | The header, skin tabs, account menu and footer links. Every site renders its header from this |
 | `fonts/` | Jost 400, 500, 600 and 700 (Latin and Latin Extended), with its licence (`OFL.txt`) |
 | `img/logo.png` | The Bonkverse logo (the purple planet), 128 px, round, for the header and favicon |
 | `index.html` | The gallery |
-| `scripts/contrast.mjs` | Checks every text and border color pair in all three themes against WCAG AA. CI fails a change that breaks one |
+| `scripts/contrast.mjs` | Checks every text and border color pair in all three themes, and in each season on each theme, against WCAG AA. CI fails a change that breaks one |
 | `scripts/responsive.mjs` | Opens the gallery at 21 sizes, from a 280 px folded phone to a 3,440 px ultrawide, in all three themes, with menus, dialogs and toasts open. It fails on sideways scrolling, anything off screen, cut-off text, a control under 44 px, or a dialog that doesn't fit. 1,280 px at 200% zoom is the 640 px size |
 
 ## Using it on a page
@@ -34,7 +35,14 @@ Order matters: `theme.js` goes first, before any stylesheet, and without `defer`
 <link rel="stylesheet" href="/static/ui/tokens.css">
 <link rel="stylesheet" href="/static/ui/base.css">
 <link rel="stylesheet" href="/static/ui/components.css">
+<link rel="stylesheet" href="/static/ui/seasons.css">
 <script src="/static/ui/ui.js" defer></script>
+```
+
+In the header, the **Appearance** menu (`.bv-appearance`, markup in `components.css`) holds the theme choice and the season switch, which only shows while a season is on the calendar:
+
+```html
+<label class="bv-season-toggle"><input type="checkbox" data-bv-season-toggle> <span>Seasonal theme</span></label>
 ```
 
 Fonts load from `fonts/` next to `base.css`, so keep the folder layout as it is.
@@ -53,6 +61,7 @@ npm install github:Bonkverse/ui#v0.1.0
 import "@bonkverse/ui/tokens.css";
 import "@bonkverse/ui/base.css";
 import "@bonkverse/ui/components.css";
+import "@bonkverse/ui/seasons.css";
 import nav from "@bonkverse/ui/nav.json";
 ```
 

@@ -15,6 +15,7 @@ const checks = {
   "tokens.css": read("tokens.css").includes(`(${want})`),
   "base.css": read("base.css").includes(`(${want})`),
   "components.css": read("components.css").includes(`(${want})`),
+  "seasons.css": read("seasons.css").includes(`(${want})`),
   "theme.js": read("theme.js").includes(`(${want})`),
   "ui.js": read("ui.js").includes(`(${want})`),
   "index.html": read("index.html").includes(want),

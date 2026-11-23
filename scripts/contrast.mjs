@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Checks every text/background and control/background pair in tokens.css,
-// in all three themes, against WCAG 2.2 AA:
+// in all three themes, and again with each season in seasons.css on top of
+// each theme, against WCAG 2.2 AA:
 //   4.5:1 for text, 3:1 for large text and for boundaries you need to see
 //   (control borders, the focus ring).
 // Exits 1 if any pair falls short. CI runs this on every push.
@@ -71,10 +72,11 @@ const PAIRS = [
 
 const here = dirname(fileURLToPath(import.meta.url));
 const css = readFileSync(join(here, "..", "tokens.css"), "utf8");
+const seasonsCss = readFileSync(join(here, "..", "seasons.css"), "utf8");
 
-function themeBlock(selectorPattern) {
-  const match = css.match(new RegExp(selectorPattern + "\\s*\\{([^}]*)\\}"));
-  if (!match) throw new Error(`No block for ${selectorPattern} in tokens.css`);
+function themeBlock(selectorPattern, source = css, file = "tokens.css") {
+  const match = source.match(new RegExp(selectorPattern + "\\s*\\{([^}]*)\\}"));
+  if (!match) throw new Error(`No block for ${selectorPattern} in ${file}`);
   const vars = {};
   for (const [, name, value] of match[1].matchAll(/--bv-([\w-]+):\s*([^;]+);/g)) {
     vars[name] = value.trim();
@@ -82,11 +84,29 @@ function themeBlock(selectorPattern) {
   return vars;
 }
 
-const THEMES = {
+const BASE = {
   Bonkverse: themeBlock('\\[data-bv-theme="bonkverse"\\]'),
   Light: themeBlock('\\[data-bv-theme="light"\\]'),
   Dark: themeBlock('\\[data-bv-theme="dark"\\]'),
 };
+const THEMES = { ...BASE };
+
+// A season's plain block applies on every theme; its Light and Dark blocks
+// win there. Each of those must set everything the plain block sets, or a
+// dark value would leak into the light page.
+for (const season of ["halloween", "christmas", "newyear"]) {
+  const sel = `\\[data-bv-season="${season}"\\]`;
+  const plain = themeBlock(`${sel}(?!\\[)`, seasonsCss, "seasons.css");
+  for (const [name, base] of Object.entries(BASE)) {
+    const own =
+      name === "Bonkverse"
+        ? {}
+        : themeBlock(`${sel}\\[data-bv-theme="${name.toLowerCase()}"\\]`, seasonsCss, "seasons.css");
+    const leaked = name === "Bonkverse" ? [] : Object.keys(plain).filter((k) => !(k in own));
+    if (leaked.length) throw new Error(`${season} ${name} doesn't set: ${leaked.join(", ")}`);
+    THEMES[`${name}+${season}`] = { ...base, ...plain, ...own };
+  }
+}
 
 function rgb(hex) {
   const h = hex.replace("#", "");
@@ -122,7 +142,7 @@ for (const [theme, vars] of Object.entries(THEMES)) {
     if (!ok) failures++;
     if (!onlyFailing || !ok) {
       rows.push(
-        `${ok ? "pass" : "FAIL"}  ${theme.padEnd(9)}  ${r.toFixed(2).padStart(5)}:1  (min ${min})  ` +
+        `${ok ? "pass" : "FAIL"}  ${theme.padEnd(19)}  ${r.toFixed(2).padStart(5)}:1  (min ${min})  ` +
           `${fg} ${a} on ${bg} ${b}  — ${where}`,
       );
     }

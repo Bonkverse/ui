@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="seasons.css">
   <script src="ui.js" defer></script>
   <!-- 3. Gallery-only layout (not part of the package) -->
   <style>
@@ -54,6 +55,7 @@
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4L2.8 9.5l6.4-.8z" stroke-width="2" stroke-linejoin="round"/></symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.55-2.5 5.55-5.55C21.97 6.01 17.46 2 12 2z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/></g></symbol>
       <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
       <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6.5 18.5c1.3-2.2 3.2-3.3 5.5-3.3s4.2 1.1 5.5 3.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
       <symbol id="i-maximize" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -105,14 +107,22 @@
           <li><a class="bv-header__link" href="https://bonkverse.io/developers/">Developers</a></li>
         </ul>
         <div class="bv-header__end">
-          <label class="bv-theme-picker">
-            <span>Theme</span>
-            <select data-bv-theme-picker>
-              <option value="bonkverse">Bonkverse</option>
-              <option value="light">Bonkverse Light</option>
-              <option value="dark">Bonkverse Dark</option>
-            </select>
-          </label>
+          <div class="bv-dropdown bv-appearance">
+            <button class="bv-header__link" type="button" aria-expanded="false" aria-controls="bv-appearance" data-bv-toggle>
+              <svg aria-hidden="true"><use href="#i-palette"/></svg><span class="bv-appearance__label bv-visually-hidden">Appearance</span>
+            </button>
+            <div class="bv-menu bv-menu--end bv-appearance__menu" id="bv-appearance" hidden>
+              <label class="bv-appearance__field">
+                <span>Theme</span>
+                <select class="bv-input bv-select" data-bv-theme-picker>
+                  <option value="bonkverse">Bonkverse</option>
+                  <option value="light">Bonkverse Light</option>
+                  <option value="dark">Bonkverse Dark</option>
+                </select>
+              </label>
+              <label class="bv-season-toggle"><input type="checkbox" data-bv-season-toggle> <span>Seasonal theme</span></label>
+            </div>
+          </div>
           <!-- Signed out, this is a plain <a class="bv-header__link" href="/login/">Log in</a> -->
           <div class="bv-dropdown bv-header__account">
             <a class="bv-header__link" href="https://bonkverse.io/my-profile/"><svg aria-hidden="true"><use href="#i-user"/></svg>nova_rider</a>
@@ -136,9 +146,9 @@
     <!-- ═══ Page header ═══ -->
     <div class="bv-page-header">
       <div class="bv-page-header__text">
-        <span class="bv-eyebrow">Bonkverse UI · v0.1.6</span>
+        <span class="bv-eyebrow">Bonkverse UI · v0.1.7</span>
         <h1>Component gallery</h1>
-        <p class="bv-lead">Every shared piece of the Bonkverse sites. Switch the theme in the header to check each one in Bonkverse, Light and Dark.</p>
+        <p class="bv-lead">Every shared piece of the Bonkverse sites. Switch the theme from the palette button in the header to check each one in Bonkverse, Light and Dark.</p>
       </div>
       <div class="bv-page-header__actions">
         <a class="bv-btn" href="https://github.com/Bonkverse/ui">GitHub</a>
@@ -497,6 +507,37 @@
       </div>
     </section>
 
+    <!-- ═══ Seasons ═══ -->
+    <section class="g-section" aria-labelledby="s-seasons">
+      <h2 id="s-seasons">Seasons</h2>
+      <p class="g-intro">With <code>seasons.css</code> loaded, <code>theme.js</code> turns on Halloween in October, Christmas from December 1 to 30 and New Year from December 31 to January 7, on top of whichever theme someone picked. Each season changes the surfaces, the accent, the header and the main action, adds a badge to the logo and one light header animation (none with reduce motion). A <strong>Seasonal theme</strong> switch appears next to the theme picker while a season is on the calendar.</p>
+      <div class="g-row">
+        <span class="g-label">Preview this whole page</span>
+        <a class="bv-btn" href="?bv-season=halloween#s-seasons">Halloween</a>
+        <a class="bv-btn" href="?bv-season=christmas#s-seasons">Christmas</a>
+        <a class="bv-btn" href="?bv-season=newyear#s-seasons">New Year</a>
+        <a class="bv-btn bv-btn--ghost" href="?bv-season=none#s-seasons">No season</a>
+      </div>
+      <div class="g-row">
+        <span class="g-label">Seasonal text</span>
+        <p data-bv-season-text="halloween" data-g-code>🎃 Spooky skins are out for October.</p>
+        <p data-bv-season-text="christmas">Happy holidays from Bonkverse.</p>
+        <p data-bv-season-text="newyear">Happy New Year from Bonkverse!</p>
+        <p class="bv-muted">(Shows only in its season: preview one above.)</p>
+      </div>
+      <div class="g-themes g-seasons" style="margin-top:var(--bv-space-6)">
+        <div class="g-theme bv-theme-scope" data-bv-theme="bonkverse" data-bv-season="halloween"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="light" data-bv-season="halloween"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="dark" data-bv-season="halloween"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="bonkverse" data-bv-season="christmas"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="light" data-bv-season="christmas"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="dark" data-bv-season="christmas"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="bonkverse" data-bv-season="newyear"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="light" data-bv-season="newyear"></div>
+        <div class="g-theme bv-theme-scope" data-bv-theme="dark" data-bv-season="newyear"></div>
+      </div>
+    </section>
+
     <!-- ═══ Dialogs ═══ -->
     <section class="g-section" aria-labelledby="s-dialogs">
       <h2 id="s-dialogs">Dialogs</h2>
@@ -627,9 +668,12 @@ console.log(await res.json());</pre>
     // Theme comparison panels
     var tpl = document.getElementById("theme-panel");
     var names = { bonkverse: "", light: "Light", dark: "Dark" };
+    var seasonNames = { halloween: "Halloween", christmas: "Christmas", newyear: "New Year" };
     document.querySelectorAll(".g-theme").forEach(function (panel) {
       panel.appendChild(tpl.content.cloneNode(true));
-      panel.querySelector("[data-name]").textContent = names[panel.dataset.bvTheme] || "Default";
+      var name = names[panel.dataset.bvTheme] || "Default";
+      if (panel.dataset.bvSeason) name = seasonNames[panel.dataset.bvSeason] + (name ? " · " + name : "");
+      panel.querySelector("[data-name]").textContent = name;
     });
 
     // Swatches for the current theme
