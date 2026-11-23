@@ -295,6 +295,7 @@
   width: 18px;
   height: 18px;
   margin: 0;
+  color: var(--bv-header-title);
   accent-color: var(--bv-header-link);
 }
 [data-bv-season="halloween"] [data-bv-season-text="halloween"],
