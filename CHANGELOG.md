@@ -4,7 +4,10 @@ Sites pin a tag (`v0.1.0`). Each entry says what changed and what a site has to 
 
 ## 0.1.7 (2026-11-23)
 
-Seasonal themes: Halloween, Christmas and New Year, across every site, with a switch to turn them off.
+Seasonal themes: Halloween, Christmas and New Year, across every site, with a switch to turn them off. And one **Appearance** button in the header for the theme and the season switch.
+
+- **`.bv-appearance` (new):** a palette button in the header. Its menu holds the theme choice and, in season, the seasonal switch, replacing the separate theme picker and switch in the bar. On phones the button reads "Appearance". `.bv-theme-picker` still works where a site wants it elsewhere.
+- **`bv-appearance-at`:** `theme.js` stamps this cookie, the time in milliseconds, whenever someone picks a theme or flips the season switch. A site that saves the choice to an account can then tell a newer choice from an old one left on another device.
 
 - **`seasons.css` (new):** each season on top of each of the three themes (nine palettes). It changes the page, card and inset surfaces, the header, the accent (links, focus, selection, highlight, first chart color) and the main action. Favorites stay gold and errors stay red. `scripts/contrast.mjs` checks every season in every theme: 592 pairs, 0 failing.
   - **Halloween** (October): dusk purple, pumpkin orange.
@@ -25,7 +28,7 @@ Seasonal themes: Halloween, Christmas and New Year, across every site, with a sw
 Upgrading:
 
 - Load `seasons.css` after `components.css`.
-- Put the switch next to the theme picker: `<label class="bv-season-toggle"><input type="checkbox" data-bv-season-toggle> <span>Seasonal theme</span></label>`.
+- Replace the header's theme picker with the Appearance menu (markup in `components.css` and in the gallery header). Its menu includes the season switch: `<label class="bv-season-toggle"><input type="checkbox" data-bv-season-toggle> <span>Seasonal theme</span></label>`.
 - Drop any seasonal stylesheet of your own.
 
 ## 0.1.6 (2026-11-22)

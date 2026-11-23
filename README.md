@@ -39,7 +39,7 @@ Order matters: `theme.js` goes first, before any stylesheet, and without `defer`
 <script src="/static/ui/ui.js" defer></script>
 ```
 
-Put the season switch next to the theme picker. It only shows while a season is on the calendar:
+In the header, the **Appearance** menu (`.bv-appearance`, markup in `components.css`) holds the theme choice and the season switch, which only shows while a season is on the calendar:
 
 ```html
 <label class="bv-season-toggle"><input type="checkbox" data-bv-season-toggle> <span>Seasonal theme</span></label>
