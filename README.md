@@ -18,6 +18,7 @@ Decided in RFC-0002 ("One Bonkverse look"). Colors and the skin card come from t
 | `seasons.css` | Halloween (October), Christmas (December 1–30) and New Year (December 31 – January 7) on top of each theme, the logo badge, one light header animation and the "Seasonal theme" switch |
 | `theme.js` | Applies the saved theme and the current season before the page paints, and runs the theme picker and the season switch |
 | `ui.js` | Menus, the phone menu, dialogs, copy buttons and toasts |
+| `account.mjs` | For headers built in the browser (replays, docs): who is signed in on bonkverse.io, their other bonk.io accounts, and switching between them (`getMe`, `switchAccount`, `addAccountHref`, `signInHref`). Types in `account.d.ts` |
 | `nav.json` | The header, skin tabs, account menu and footer links. Every site renders its header from this |
 | `fonts/` | Jost 400, 500, 600 and 700 (Latin and Latin Extended), with its licence (`OFL.txt`) |
 | `img/logo.png` | The Bonkverse logo (the purple planet), 128 px, round, for the header and favicon |
