@@ -2,6 +2,20 @@
 
 Sites pin a tag (`v0.1.0`). Each entry says what changed and what a site has to do when it upgrades.
 
+## 0.1.9 (2026-11-24)
+
+The account switcher (RFC-0003 phase 5): people with several bonk.io accounts switch between them from the header's account menu, on every Bonkverse site.
+
+- **`account.mjs` (new), with types in `account.d.ts`:** for the replay site and the docs, whose headers are built in the browser. `getMe()` reads bonkverse.io's `/api/me/` (now with `accounts`); `switchAccount(id)` switches through `/api/me/switch/` without leaving the page; `addAccountHref(next)` and `signInHref(username, next)` link to bonkverse.io's login. Only accounts signed in on this browser can be switched to.
+- **Menus:** `.bv-menu__label` (a small heading over a group of items), `.bv-menu__text` (an item's text when a badge follows; it wraps) and `.bv-menu__badge` ("Sign in", "Not connected"). A menu with badges is at least 260 px wide (not in the phone menu).
+- **`nav.json`:** the account menu gains "Add bonk.io account" (`/login/?add=1`, `id: "add-account"`). Sites on other domains add `&next=` with the page they're on (`addAccountHref`).
+- **Gallery:** the sample account menu shows the switcher.
+
+Upgrading:
+
+- bonkverse.io: `python scripts/sync_ui.py v0.1.9`. Its header already renders the switcher on the server; drop the site's own `.bv-account-row` / `.bv-account-menu__label` styles for the package's menu classes, and render "Add bonk.io account" from `nav.json` instead of by hand.
+- Replay site and docs: bump the dependency to `v0.1.9` and render the switcher with `account.mjs` in the account menu.
+
 ## 0.1.8 (2026-11-23)
 
 Gallery only. No CSS or script changes; sites that don't serve the gallery have nothing to do.
